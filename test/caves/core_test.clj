@@ -1,4 +1,5 @@
 (ns caves.core-test
+  (:require caves.core)
   (:import [caves.core UI World Game])
   (:use clojure.test
         caves.core))
