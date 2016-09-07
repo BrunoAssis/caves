@@ -13,16 +13,13 @@
 (defn get-tile [tiles x y]
   (get-in tiles [y x] (:bound tiles)))
 
-(defn random-tile []
-  (tiles (rand-nth [:floor :wall])))
-
-(defn random-row []
-  (let [[cols rows] world-size]
-    (vec (repeatedly cols random-tile))))
-
 (defn random-tiles []
   (let [[cols rows] world-size]
-    (vec (repeatedly rows random-row))))
+    (letfn [(random-tile []
+              (tiles (rand-nth [:floor :wall])))
+            (random-row []
+              (vec (repeatedly cols random-tile)))] 
+      (vec (repeatedly rows random-row)))))
 
 (defn random-world []
   (new World (random-tiles)))
